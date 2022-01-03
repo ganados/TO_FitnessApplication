@@ -16,6 +16,8 @@
 	<properties>
 		<java.version>11</java.version>
 		<vaadin.version>14.8.0</vaadin.version>
+
+		<jackson-data.version>2.13.1</jackson-data.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -46,6 +48,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-yaml</artifactId>
+			<version>${jackson-data.version}</version>
 		</dependency>
 
 		<dependency>

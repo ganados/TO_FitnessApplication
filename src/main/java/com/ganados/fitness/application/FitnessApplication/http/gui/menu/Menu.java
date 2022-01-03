@@ -1,6 +1,11 @@
 package com.ganados.fitness.application.FitnessApplication.http.gui.menu;
 
+import java.util.List;
+
+import com.ganados.fitness.application.FitnessApplication.database.provider.DatabaseProvider;
+import com.ganados.fitness.application.FitnessApplication.database.service.DatabaseService;
 import com.ganados.fitness.application.FitnessApplication.http.security.service.SecurityService;
+import com.ganados.fitness.application.FitnessApplication.model.training.Training;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -8,16 +13,24 @@ import com.vaadin.flow.router.Route;
 
 @Route("menu")
 public class Menu extends VerticalLayout {
+
     private final SecurityService securityService;
+    private final DatabaseService databaseService;
 
-    private Button showPlans;
-    private Button createNewPlan;
-    private Button logout;
 
-    public Menu(SecurityService service) {
+    public Menu(final SecurityService service, final DatabaseService databaseService) {
         this.securityService = service;
+        this.databaseService = databaseService;
         header();
-        buttons();
+
+        // TODO: remove
+        for (Training training : DatabaseProvider.readAllTrainings()) {
+            this.databaseService.saveTraining(training);
+        }
+        List<Training> allTrainings = databaseService.getAllTrainings();
+        // TODO: remove
+
+        logOut();
     }
 
     private void header() {
@@ -25,15 +38,9 @@ public class Menu extends VerticalLayout {
         add(label);
     }
 
-    private void buttons() {
-        this.showPlans = new Button("Show plan");
-        this.createNewPlan = new Button("Create new plan");
-        this.logout = new Button("Log out");
-
-        this.logout.addClickListener(buttonClickEvent -> securityService.logout());
-
-        add(showPlans);
-        add(createNewPlan);
+    private void logOut() {
+        Button logout = new Button("Log out");
+        logout.addClickListener(buttonClickEvent -> securityService.logout());
         add(logout);
     }
 

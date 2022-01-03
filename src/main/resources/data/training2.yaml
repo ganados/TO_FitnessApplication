@@ -1,0 +1,47 @@
+id: null
+dateTime: "2018-05-30T18:54:23"
+trainingDetails:
+  id: null
+  exercises:
+  - id: null
+    name: "rumunski"
+    series:
+    - id: null
+      reps: 10
+      weight: 30.0
+    - id: null
+      reps: 10
+      weight: 40.0
+    - id: null
+      reps: 10
+      weight: 50.0
+    - id: null
+      reps: 10
+      weight: 60.0
+  - id: null
+    name: "przysiad"
+    series:
+    - id: null
+      reps: 10
+      weight: 50.0
+    - id: null
+      reps: 10
+      weight: 60.0
+    - id: null
+      reps: 10
+      weight: 70.0
+    - id: null
+      reps: 10
+      weight: 80.0
+  - id: null
+    name: "podciaganie"
+    series:
+    - id: null
+      reps: 10
+      weight: 40.0
+    - id: null
+      reps: 10
+      weight: 50.0
+    - id: null
+      reps: 10
+      weight: 60.0

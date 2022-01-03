@@ -1,0 +1,47 @@
+id: null
+dateTime: "2020-05-30T18:54:23"
+trainingDetails:
+  id: null
+  exercises:
+  - id: null
+    name: "rumunski"
+    series:
+    - id: null
+      reps: 12
+      weight: 45.0
+    - id: null
+      reps: 12
+      weight: 55.0
+    - id: null
+      reps: 12
+      weight: 65.0
+    - id: null
+      reps: 12
+      weight: 75.0
+  - id: null
+    name: "przysiad"
+    series:
+    - id: null
+      reps: 12
+      weight: 65.0
+    - id: null
+      reps: 12
+      weight: 75.0
+    - id: null
+      reps: 12
+      weight: 85.0
+    - id: null
+      reps: 12
+      weight: 95.0
+  - id: null
+    name: "podciaganie"
+    series:
+    - id: null
+      reps: 12
+      weight: 45.0
+    - id: null
+      reps: 12
+      weight: 65.0
+    - id: null
+      reps: 12
+      weight: 85.0
