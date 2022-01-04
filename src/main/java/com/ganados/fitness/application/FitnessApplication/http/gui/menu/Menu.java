@@ -1,34 +1,24 @@
 package com.ganados.fitness.application.FitnessApplication.http.gui.menu;
 
-import java.util.List;
-
-import com.ganados.fitness.application.FitnessApplication.database.provider.DatabaseProvider;
-import com.ganados.fitness.application.FitnessApplication.database.service.DatabaseService;
+import com.ganados.fitness.application.FitnessApplication.http.gui.trainings.all.Trainings;
 import com.ganados.fitness.application.FitnessApplication.http.security.service.SecurityService;
-import com.ganados.fitness.application.FitnessApplication.model.training.Training;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.RouterLink;
 
-@Route("menu")
+import static com.ganados.fitness.application.FitnessApplication.http.utilities.HttpConstants.MENU_PATH;
+
+@Route(MENU_PATH)
 public class Menu extends VerticalLayout {
 
     private final SecurityService securityService;
-    private final DatabaseService databaseService;
 
-
-    public Menu(final SecurityService service, final DatabaseService databaseService) {
+    public Menu(SecurityService service) {
         this.securityService = service;
-        this.databaseService = databaseService;
         header();
-
-        // TODO: remove
-        for (Training training : DatabaseProvider.readAllTrainings()) {
-            this.databaseService.saveTraining(training);
-        }
-        List<Training> allTrainings = databaseService.getAllTrainings();
-        // TODO: remove
+        toPlans();
 
         logOut();
     }
@@ -44,4 +34,10 @@ public class Menu extends VerticalLayout {
         add(logout);
     }
 
+    private void toPlans() {
+        Button button = new Button("Show trainings");
+        RouterLink routerLink = new RouterLink("", Trainings.class);
+        routerLink.getElement().appendChild(button.getElement());
+        add(routerLink);
+    }
 }
