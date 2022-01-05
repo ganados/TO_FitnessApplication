@@ -1,4 +1,4 @@
-package com.ganados.fitness.application.FitnessApplication.http.controller.all;
+package com.ganados.fitness.application.FitnessApplication.http.controller.trainings.all;
 
 import java.util.Comparator;
 import java.util.List;

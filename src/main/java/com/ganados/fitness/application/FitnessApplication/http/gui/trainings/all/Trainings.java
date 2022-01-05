@@ -2,7 +2,7 @@ package com.ganados.fitness.application.FitnessApplication.http.gui.trainings.al
 
 import com.ganados.fitness.application.FitnessApplication.database.provider.DatabaseProvider;
 import com.ganados.fitness.application.FitnessApplication.database.service.DatabaseService;
-import com.ganados.fitness.application.FitnessApplication.http.controller.all.ShowAllController;
+import com.ganados.fitness.application.FitnessApplication.http.controller.trainings.all.ShowAllController;
 import com.ganados.fitness.application.FitnessApplication.http.gui.basic.BasicView;
 import com.ganados.fitness.application.FitnessApplication.model.training.Training;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;

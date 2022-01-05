@@ -1,6 +1,8 @@
 package com.ganados.fitness.application.FitnessApplication.http.gui.menu;
 
+import com.ganados.fitness.application.FitnessApplication.http.gui.statistics.Statistics;
 import com.ganados.fitness.application.FitnessApplication.http.gui.trainings.all.Trainings;
+import com.ganados.fitness.application.FitnessApplication.http.gui.trainings.create.CreateTraining;
 import com.ganados.fitness.application.FitnessApplication.http.security.service.SecurityService;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Label;
@@ -19,7 +21,8 @@ public class Menu extends VerticalLayout {
         this.securityService = service;
         header();
         toPlans();
-
+        toPlanCreator();
+        toStatistics();
         logOut();
     }
 
@@ -37,6 +40,20 @@ public class Menu extends VerticalLayout {
     private void toPlans() {
         Button button = new Button("Show trainings");
         RouterLink routerLink = new RouterLink("", Trainings.class);
+        routerLink.getElement().appendChild(button.getElement());
+        add(routerLink);
+    }
+
+    private void toPlanCreator() {
+        Button button = new Button("Create new training");
+        RouterLink routerLink = new RouterLink("", CreateTraining.class);
+        routerLink.getElement().appendChild(button.getElement());
+        add(routerLink);
+    }
+
+    private void toStatistics() {
+        Button button = new Button("Show statistics");
+        RouterLink routerLink = new RouterLink("", Statistics.class);
         routerLink.getElement().appendChild(button.getElement());
         add(routerLink);
     }
