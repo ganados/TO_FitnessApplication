@@ -6,7 +6,9 @@ import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.Route;
 
-@Route("login")
+import static com.ganados.fitness.application.FitnessApplication.http.utilities.HttpConstants.LOGIN_PATH;
+
+@Route(LOGIN_PATH)
 public class Login extends VerticalLayout implements BeforeEnterObserver {
     private final LoginForm loginForm;
 

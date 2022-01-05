@@ -37,4 +37,10 @@ public class DatabaseService {
         this.trainingRepository.save(training);
         log.info("Training saved successfully");
     }
+
+    @Transactional
+    public void saveTrainings(final List<Training> trainings) {
+        this.trainingRepository.saveAll(trainings);
+        log.info("Trainings saved successfully");
+    }
 }
