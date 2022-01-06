@@ -1,54 +1,79 @@
 package com.ganados.fitness.application.FitnessApplication.http.controller.trainings.create.proxy;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.Set;
 
+import com.ganados.fitness.application.FitnessApplication.http.controller.trainings.create.paramters.SaveExerciseParameters;
 import com.ganados.fitness.application.FitnessApplication.model.training.Training;
-import com.vaadin.flow.component.Component;
+import com.ganados.fitness.application.FitnessApplication.model.training.details.TrainingDetails;
+import com.ganados.fitness.application.FitnessApplication.model.training.exercises.Exercise;
+import com.ganados.fitness.application.FitnessApplication.model.training.exercises.series.Series;
 import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.textfield.TextField;
 
 import lombok.extern.java.Log;
-
-import static java.util.Map.Entry.comparingByKey;
 
 @Log
 public class Proxy {
 
-    public static List<Training> prepare(final List<Component> componentList) {
-        Map<Integer, FormLayout> formLayouts = new LinkedHashMap<>();
-        for (Component component : componentList) {
-            if (component instanceof FormLayout) {
-                formLayouts.put(parseInt(component.getId().get()), (FormLayout) component);
-            }
-        }
-        LinkedHashMap<Integer, FormLayout> sortedFormLayouts = sortMap(formLayouts);
-
-        for(int key : sortedFormLayouts.keySet()) {
-            FormLayout formLayout = sortedFormLayouts.get(key);
-
+    public static Training prepare(final LinkedHashMap<FormLayout, SaveExerciseParameters> exerciseInfo, final String date) {
+        Set<Exercise> exercises = new HashSet<>();
+        for (FormLayout formLayout : exerciseInfo.keySet()) {
+            Exercise exercise = getExercise(exerciseInfo.get(formLayout));
+            exercises.add(exercise);
         }
 
-        return null;
+        return Training.builder()
+                .date(date)
+                .trainingDetails(new TrainingDetails(exercises))
+                .build();
     }
 
-    private static int parseInt(final String id) {
-        int intId = 0;
+    private static Exercise getExercise(final SaveExerciseParameters saveExerciseParameters) {
+        return Exercise.builder()
+                .name(saveExerciseParameters.getName().getValue())
+                .series(getSeries(saveExerciseParameters.getReps(), saveExerciseParameters.getWeights()))
+                .build();
+    }
+
+    private static List<Series> getSeries(final List<TextField> reps, final List<TextField> weights) {
+        List<Series> series = new ArrayList<>();
+        for (int i = 0; i < reps.size(); i++) {
+            series.add(getSeries(reps.get(i), weights.get(i)));
+        }
+        return series;
+    }
+
+    private static Series getSeries(final TextField rep, final TextField weight) {
+        return Series.builder()
+                .reps(parseInt(rep.getValue()))
+                .weight(parseDouble(weight.getValue()))
+                .build();
+    }
+
+    private static int parseInt(final String number) {
+        int intNumber = 0;
         try {
-            intId = Integer.parseInt(id);
+            intNumber = Integer.parseInt(number.trim());
         } catch (final NumberFormatException numberFormatException) {
-            log.warning("Wrong form id");
+            log.warning("Wrong number");
+            Notification.show("Wrong number");
         }
-        return intId;
+        return intNumber;
     }
 
-    private static LinkedHashMap<Integer, FormLayout> sortMap(Map<Integer, FormLayout> formLayouts) {
-        return formLayouts.entrySet()
-                .stream()
-                .sorted(comparingByKey())
-                .collect(
-                        Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2,
-                                LinkedHashMap::new));
+    private static double parseDouble(final String number) {
+        double doubleNumber = 0;
+        try {
+            doubleNumber = Integer.parseInt(number.trim());
+        } catch (final NumberFormatException numberFormatException) {
+            log.warning("Wrong number");
+            Notification.show("Wrong number");
+        }
+        return doubleNumber;
     }
 }

@@ -26,9 +26,10 @@ public class Exercise extends BaseEntity {
     private static int counter = 0;
 
     @Builder
-    public Exercise(final List<Series> series) {
+    public Exercise(final List<Series> series, final String name) {
         super();
         this.series = series;
+        this.name = name;
     }
 
     private String name;

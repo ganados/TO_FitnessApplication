@@ -23,11 +23,11 @@ public class Trainings extends VerticalLayout {
 
         add(BasicView.getHelloLabel("All plans"));
 
-        // TODO : REMOVE
-        for (Training training : DatabaseProvider.readAllTrainings()) {
-            this.databaseService.saveTraining(training);
-        }
-        // TODO : REMOVE
+//        // TODO : REMOVE
+//        for (Training training : DatabaseProvider.readAllTrainings()) {
+//            this.databaseService.saveTraining(training);
+//        }
+//        // TODO : REMOVE
 
         FlexLayout flexLayout = this.showAllController.printPlans(this.databaseService.getAllTrainings());
 

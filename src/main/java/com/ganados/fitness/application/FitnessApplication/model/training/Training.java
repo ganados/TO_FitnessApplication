@@ -23,13 +23,13 @@ import lombok.Setter;
 public class Training extends BaseEntity {
 
     @Builder
-    public Training(final String dateTime, final TrainingDetails trainingDetails) {
+    public Training(final String date, final TrainingDetails trainingDetails) {
         super();
-        this.dateTime = dateTime;
+        this.date = date;
         this.trainingDetails = trainingDetails;
     }
 
-    private String dateTime;
+    private String date;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "training_details_id")
@@ -40,11 +40,11 @@ public class Training extends BaseEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Training training = (Training) o;
-        return dateTime.equals(training.dateTime) && trainingDetails.equals(training.trainingDetails);
+        return date.equals(training.date) && trainingDetails.equals(training.trainingDetails);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(dateTime, trainingDetails);
+        return Objects.hash(date, trainingDetails);
     }
 }

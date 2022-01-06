@@ -2,6 +2,8 @@ package com.ganados.fitness.application.FitnessApplication.http.controller.train
 
 import java.util.List;
 
+import com.vaadin.flow.component.textfield.TextField;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,19 +14,19 @@ import lombok.Setter;
 @Builder
 @AllArgsConstructor(staticName = "of")
 public class SaveExerciseParameters {
-    private String name;
-    private List<Integer> reps;
-    private List<Double> weights;
+    private TextField name;
+    private List<TextField> reps;
+    private List<TextField> weights;
 
-    public void addRep(final int rep) {
+    public void addRep(final TextField rep) {
         this.reps.add(rep);
     }
 
-    public void addWeight(final double weight) {
+    public void addWeight(final TextField weight) {
         this.weights.add(weight);
     }
 
-    public void addExerciseElements(final int rep, final double weight) {
+    public void addExerciseElements(final TextField rep, final TextField weight) {
         addRep(rep);
         addWeight(weight);
     }

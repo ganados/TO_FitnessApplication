@@ -38,7 +38,7 @@ public class ShowAllController extends BasicController {
     private Accordion planStructure(final Training training) {
         Accordion mainAccordion = new Accordion();
         String trainingId = "Training " + training.getId().toString();
-        Span trainingDate = new Span(training.getDateTime().replace("T", " "));
+        Span trainingDate = new Span(training.getDate().replace("T", " "));
 
         TrainingDetails trainingDetails = training.getTrainingDetails();
 

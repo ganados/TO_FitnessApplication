@@ -51,7 +51,9 @@ public class StatisticsController extends BasicController {
         Map<String, Double> dateExercises = new LinkedHashMap<>();
         for (Training training : trainings) {
             Exercise exercise = getExercise(training.getTrainingDetails().getExercises(), name);
-            dateExercises.put(training.getDateTime(), getExerciseAvg(exercise));
+            if (exercise != null) {
+                dateExercises.put(training.getDate(), getExerciseAvg(exercise));
+            }
         }
         return Statistic.of(dateExercises);
     }
