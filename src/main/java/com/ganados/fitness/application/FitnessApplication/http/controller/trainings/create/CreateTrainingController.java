@@ -54,6 +54,10 @@ public class CreateTrainingController extends BasicController {
         databaseService.saveTraining(training);
     }
 
+    public boolean checkIfExists(final String date) {
+        return databaseService.getTraining(date);
+    }
+
     private void removeExercise(FormLayout formLayout) {
         formLayout.removeAll();
         Notification.show("Exercise removed");

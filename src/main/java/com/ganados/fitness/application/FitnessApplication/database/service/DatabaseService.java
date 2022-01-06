@@ -43,6 +43,11 @@ public class DatabaseService {
     }
 
     @Transactional
+    public boolean getTraining(final String date) {
+        return trainingRepository.findTrainingByDate(date) == null;
+    }
+
+    @Transactional
     public void saveTrainings(final List<Training> trainings) {
         this.trainingRepository.saveAll(trainings);
         log.info("Trainings saved successfully");

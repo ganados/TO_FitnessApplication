@@ -2,6 +2,7 @@ package com.ganados.fitness.application.FitnessApplication.model.training;
 
 import java.util.Objects;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -29,6 +30,7 @@ public class Training extends BaseEntity {
         this.trainingDetails = trainingDetails;
     }
 
+    @Column(name = "date")
     private String date;
 
     @OneToOne(cascade = CascadeType.ALL)

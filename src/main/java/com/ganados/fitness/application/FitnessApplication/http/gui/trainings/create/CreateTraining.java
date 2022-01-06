@@ -36,10 +36,15 @@ public class CreateTraining extends VerticalLayout {
         Button saveNewExerciseButton = new Button("Save");
         add(saveNewExerciseButton);
         saveNewExerciseButton.addClickListener(buttonClickEvent -> {
-            Training training = Proxy.prepare(createTrainingController.getExerciseInfo(), date.getValue());
-            createTrainingController.saveExercise(training);
-            Notification.show("Trainings saved");
-            createTrainingController.afterSave();
+            if(createTrainingController.checkIfExists(date.getValue())) {
+                Training training = Proxy.prepare(createTrainingController.getExerciseInfo(), date.getValue());
+                createTrainingController.saveExercise(training);
+                Notification.show("Trainings saved");
+                createTrainingController.afterSave();
+            }
+            else {
+                Notification.show("Training with entered date already exists");
+            }
         });
 
 

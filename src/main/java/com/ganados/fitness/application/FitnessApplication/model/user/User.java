@@ -1,6 +1,7 @@
 package com.ganados.fitness.application.FitnessApplication.model.user;
 
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import com.ganados.fitness.application.FitnessApplication.model.training.base.BaseEntity;
@@ -18,15 +19,19 @@ public class User extends BaseEntity {
 
     private String firstname;
     private String lastname;
+
+    @Column(name = "email")
     private String email;
     private String password;
+    private String role;
 
     @Builder
-    public User(final String firstname, final String lastname, final String email, final String password) {
+    public User(final String firstname, final String lastname, final String email, final String password, final String role) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.password = password;
+        this.role = role;
     }
 
     @Override
