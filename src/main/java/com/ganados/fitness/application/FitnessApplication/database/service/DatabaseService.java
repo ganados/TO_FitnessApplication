@@ -5,10 +5,12 @@ import javax.transaction.Transactional;
 
 import com.ganados.fitness.application.FitnessApplication.database.mapper.TrainingsMapper;
 import com.ganados.fitness.application.FitnessApplication.model.training.Training;
+import com.ganados.fitness.application.FitnessApplication.model.user.User;
 import com.ganados.fitness.application.FitnessApplication.repositories.details.TrainingDetailsRepository;
 import com.ganados.fitness.application.FitnessApplication.repositories.exercise.ExerciseRepository;
 import com.ganados.fitness.application.FitnessApplication.repositories.series.SeriesRepository;
 import com.ganados.fitness.application.FitnessApplication.repositories.training.TrainingRepository;
+import com.ganados.fitness.application.FitnessApplication.repositories.user.UserRepository;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -25,10 +27,12 @@ public class DatabaseService {
     private final ExerciseRepository exerciseRepository;
     private final SeriesRepository seriesRepository;
 
+    private final UserRepository userRepository;
+
     @Transactional
     public List<Training> getAllTrainings() {
         Iterable<Training> all = trainingRepository.findAll();
-        log.info("Reading from database...");
+        log.info("Getting trainings from database...");
         return TrainingsMapper.toTrainingList(all);
     }
 
@@ -43,4 +47,17 @@ public class DatabaseService {
         this.trainingRepository.saveAll(trainings);
         log.info("Trainings saved successfully");
     }
+
+    @Transactional
+    public void saveUser(final User user) {
+        this.userRepository.save(user);
+        log.info("User saved successfully");
+    }
+
+    @Transactional
+    public User getUser(final String email) {
+        log.info("Getting user from database...");
+        return this.userRepository.findByEmail(email);
+    }
+
 }

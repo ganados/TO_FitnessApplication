@@ -15,5 +15,6 @@
         <mapping class="com.ganados.fitness.application.FitnessApplication.model.training.details.TrainingDetails"/>
         <mapping class="com.ganados.fitness.application.FitnessApplication.model.training.exercises.Exercise"/>
         <mapping class="com.ganados.fitness.application.FitnessApplication.model.training.exercises.series.Series"/>
+        <mapping class="com.ganados.fitness.application.FitnessApplication.model.user.User"/>
     </session-factory>
 </hibernate-configuration>
