@@ -9,8 +9,7 @@ import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConf
 @NpmPackage(value = "lumo-css-framework", version = "^4.0.10")
 public class FitnessApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(FitnessApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(FitnessApplication.class, args);
+    }
 }

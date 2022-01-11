@@ -13,7 +13,6 @@ import com.ganados.fitness.application.FitnessApplication.model.training.details
 import com.ganados.fitness.application.FitnessApplication.model.training.exercises.Exercise;
 import com.ganados.fitness.application.FitnessApplication.model.training.exercises.series.Series;
 import com.vaadin.flow.component.formlayout.FormLayout;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.textfield.TextField;
 
 import lombok.extern.java.Log;
@@ -57,7 +56,7 @@ public class Proxy {
     }
 
     private static int parseInt(final String number) throws NotANumberException {
-        int intNumber = 0;
+        int intNumber;
         try {
             intNumber = Integer.parseInt(number.trim());
         } catch (final NumberFormatException numberFormatException) {
@@ -68,7 +67,7 @@ public class Proxy {
     }
 
     private static double parseDouble(final String number) throws NotANumberException {
-        double doubleNumber = 0;
+        double doubleNumber;
         try {
             doubleNumber = Integer.parseInt(number.trim());
         } catch (final NumberFormatException numberFormatException) {

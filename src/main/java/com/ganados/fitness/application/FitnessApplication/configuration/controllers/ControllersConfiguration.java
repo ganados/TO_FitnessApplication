@@ -13,8 +13,8 @@ import org.springframework.context.annotation.Configuration;
 public class ControllersConfiguration {
 
     @Bean
-    public ShowAllController showAllController() {
-        return ShowAllController.of();
+    public ShowAllController showAllController(final DatabaseService databaseService) {
+        return ShowAllController.of(databaseService);
     }
 
     @Bean

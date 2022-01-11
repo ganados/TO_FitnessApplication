@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.ganados.fitness.application.FitnessApplication.database.service.DatabaseService;
 import com.ganados.fitness.application.FitnessApplication.http.controller.basic.BasicController;
 import com.ganados.fitness.application.FitnessApplication.model.training.Training;
 import com.ganados.fitness.application.FitnessApplication.model.training.details.TrainingDetails;
@@ -12,6 +13,7 @@ import com.ganados.fitness.application.FitnessApplication.model.training.exercis
 import com.ganados.fitness.application.FitnessApplication.model.training.exercises.series.Series;
 import com.vaadin.flow.component.accordion.Accordion;
 import com.vaadin.flow.component.accordion.AccordionPanel;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
@@ -23,16 +25,31 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor(staticName = "of")
 public class ShowAllController extends BasicController {
 
+    private final DatabaseService databaseService;
+
     public FlexLayout printPlans(final List<Training> trainings) {
         FlexLayout flexLayout = new FlexLayout();
         for (Training training : trainings) {
-            flexLayout.add(planStructure(training));
+            FlexLayout children = new FlexLayout(planStructure(training));
+            children.setFlexDirection(FlexLayout.FlexDirection.COLUMN);
+            insertRemoveButton(children, training);
+            flexLayout.add(children);
         }
         flexLayout.setFlexWrap(FlexLayout.FlexWrap.WRAP);
         flexLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.EVENLY);
         flexLayout.setAlignContent(FlexLayout.ContentAlignment.CENTER);
 
         return flexLayout;
+    }
+
+    private void insertRemoveButton(final FlexLayout flexLayout, final Training training) {
+        Button removeTrainingButton = new Button("Remove");
+        flexLayout.add(removeTrainingButton);
+        removeTrainingButton.addClickListener(buttonClickEvent -> {
+                    databaseService.removeTraining(training);
+                    flexLayout.removeAll();
+                }
+        );
     }
 
     private Accordion planStructure(final Training training) {

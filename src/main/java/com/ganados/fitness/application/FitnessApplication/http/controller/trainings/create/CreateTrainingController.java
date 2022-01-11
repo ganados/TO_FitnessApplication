@@ -59,6 +59,7 @@ public class CreateTrainingController extends BasicController {
     }
 
     private void removeExercise(FormLayout formLayout) {
+        this.exerciseInfo.remove(formLayout);
         formLayout.removeAll();
         Notification.show("Exercise removed");
     }

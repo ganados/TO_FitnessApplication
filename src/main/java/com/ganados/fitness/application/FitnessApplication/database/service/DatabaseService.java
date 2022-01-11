@@ -54,6 +54,12 @@ public class DatabaseService {
     }
 
     @Transactional
+    public void removeTraining(final Training training) {
+        this.trainingRepository.delete(training);
+        log.info("Trainings removed successfully");
+    }
+
+    @Transactional
     public void saveUser(final User user) {
         this.userRepository.save(user);
         log.info("User saved successfully");
