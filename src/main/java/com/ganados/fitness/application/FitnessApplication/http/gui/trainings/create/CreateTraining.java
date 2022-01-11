@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.time.LocalDateTime;
 
 import com.ganados.fitness.application.FitnessApplication.http.controller.trainings.create.CreateTrainingController;
+import com.ganados.fitness.application.FitnessApplication.http.controller.trainings.create.exception.NotANumberException;
 import com.ganados.fitness.application.FitnessApplication.http.controller.trainings.create.proxy.Proxy;
 import com.ganados.fitness.application.FitnessApplication.http.gui.basic.BasicView;
 import com.ganados.fitness.application.FitnessApplication.model.training.Training;
@@ -37,10 +38,14 @@ public class CreateTraining extends VerticalLayout {
         add(saveNewExerciseButton);
         saveNewExerciseButton.addClickListener(buttonClickEvent -> {
             if(createTrainingController.checkIfExists(date.getValue())) {
-                Training training = Proxy.prepare(createTrainingController.getExerciseInfo(), date.getValue());
-                createTrainingController.saveExercise(training);
-                Notification.show("Trainings saved");
-                createTrainingController.afterSave();
+                try {
+                    Training training = Proxy.prepare(createTrainingController.getExerciseInfo(), date.getValue());
+                    createTrainingController.saveExercise(training);
+                    Notification.show("Trainings saved");
+                    createTrainingController.afterSave();
+                } catch(final NotANumberException notANumberException) {
+                    Notification.show("Wrong number");
+                }
             }
             else {
                 Notification.show("Training with entered date already exists");
