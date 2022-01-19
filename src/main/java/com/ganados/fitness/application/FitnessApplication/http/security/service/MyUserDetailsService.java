@@ -18,7 +18,7 @@ public class MyUserDetailsService implements UserDetailsService {
     private final DatabaseService databaseService;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
         User user = databaseService.getUser(username);
         if (user == null) {
             log.warning("User " + username + " not found");
